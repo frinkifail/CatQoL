@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "catqol",
+  "version": "${version}",
+  "name": "CatQoL",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/frinkifail/CatQoL"
+  },
+  "license": "unlicense",
+  "icon": "assets/catqol/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "cat.frinkifail.catqol.client.CatQoLClient"
+    ],
+    "main": [
+      "cat.frinkifail.catqol.CatQoL"
+    ]
+  },
+  "mixins": [
+    "catqol.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
