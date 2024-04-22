@@ -22,22 +22,28 @@ public class CatMainScreen extends Screen {
 
     @Override
     protected void init() {
-        ButtonWidget testButton = ButtonWidget.builder(Text.literal("Toggle fly"), button -> {
+        ButtonWidget toggleFly = ButtonWidget.builder(Text.literal("Toggle fly"), button -> {
 //                    GlobalStaticClass.logger.info("testing 123 success");
                     ClientPlayerEntity player = Objects.requireNonNull(Objects.requireNonNull(client).player);
                     player.getAbilities().allowFlying = !player.getAbilities().allowFlying;
                 })
-                .dimensions(width / 2 - 250, 24, 250, 24)
-                .tooltip(Tooltip.of(Text.literal("Prints a testing message")))
+                .dimensions(0, 50 + 24, 250, 24)
+                .build();
+        ButtonWidget toggleNoFall = ButtonWidget.builder(Text.literal("Toggle NoFall"), button -> {
+            TempConfig.noFallEnabled = !TempConfig.noFallEnabled;
+        })
+                .dimensions(0, 100 + 24, 250, 24)
                 .build();
 
-        addDrawableChild(testButton);
+        addDrawableChild(toggleFly);
+        addDrawableChild(toggleNoFall);
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(textRenderer, Text.literal(String.format("Can fly: %s", Objects.requireNonNull(Objects.requireNonNull(client).player).getAbilities().allowFlying)), width / 2, 24, 0xFFFFFF);
+        context.drawCenteredTextWithShadow(textRenderer, Text.literal(String.format("NoFall: %s", TempConfig.noFallEnabled)), width / 2, 48, 0xFFFFFF);
     }
 
     @Override
